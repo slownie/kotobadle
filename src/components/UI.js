@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react';
-import useWordle from '../hooks/useWordle';
+import React, { useEffect } from "react";
+import useWordle from "../hooks/useWordle";
 
-export default function UI({solution}) {
-    const [currentGuess,handleKeyup] = useWordle(solution);
+export default function UI({ solution }) {
+  const { currentGuess, handleKeyup } = useWordle(solution);
 
-    useEffect(() => {
-        window.addEventListener('keyup', handleKeyup)
-        return () => window.removeEventListener('keyup',handleKeyup)
-    }, [handleKeyup])
+  useEffect(() => {
+    window.addEventListener("keyup", handleKeyup);
+    return () => window.removeEventListener("keyup", handleKeyup);
+  }, [handleKeyup]);
 
-    return (
-        <div>
-
-        </div>
-    )
+  return <div>currentGuess - {currentGuess}</div>;
 }
