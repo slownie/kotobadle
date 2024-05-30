@@ -1,23 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import UI from './components/UI';
+import words from "./words.json";
+
 
 function App() {
+  const randomIndex = Math.floor(Math.random()*words.length);
+  const answer=words[randomIndex];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {answer && <UI solution={answer}/>}
     </div>
   );
 }
