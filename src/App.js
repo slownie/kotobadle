@@ -1,4 +1,3 @@
-import "./App.css";
 import UI from "./components/UI";
 import { Keypad } from "./components/Keypad";
 import words from "./words.json";
