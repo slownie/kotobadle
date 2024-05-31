@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import useWordle from "../hooks/useWordle";
+import { Keypad } from "./Keypad";
 
 export default function UI({ solution }) {
   const { currentGuess, handleKeyup } = useWordle(solution);
@@ -9,5 +10,10 @@ export default function UI({ solution }) {
     return () => window.removeEventListener("keyup", handleKeyup);
   }, [handleKeyup]);
 
-  return <div>currentGuess - {currentGuess}</div>;
+  return (
+    <div>
+      <Keypad/>
+      currentGuess - {currentGuess}
+    </div>
+  );
 }
