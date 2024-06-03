@@ -2,7 +2,7 @@ import { useState } from "react";
 const useWordle = (solution) => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState(""); // What the user is currently typing
-  const [guesses, setGuesses] = useState([]); // Formatted guesses
+  const [guesses, setGuesses] = useState([...Array(6)]); // Formatted guesses
   const [history, setHistory] = useState([]); // Plain-string guesses
   const [isCorrect, setIsCorrect] = useState(false); // Victory
 
@@ -31,7 +31,7 @@ const useWordle = (solution) => {
     // I don't know if this works with Japanese keyboards but it should??
     if (/^[A-Za-z]$/.test(key) || /^[あ-ん]$/.test(key)) {
       console.log(key);
-      if (currentGuess.length < 5) {
+      if (currentGuess.length < 3) {
         setCurrentGuess((prev) => {
           return prev + key;
         });
@@ -39,6 +39,6 @@ const useWordle = (solution) => {
     }
   };
 
-  return { turn, currentGuess, guesses, isCorrect, handleKeyup };
+  return { turn, currentGuess, setCurrentGuess, guesses, isCorrect, handleKeyup };
 };
 export default useWordle;
