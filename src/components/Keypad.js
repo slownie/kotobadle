@@ -84,21 +84,28 @@ const charJP_O = [
   { char: "こ" },
   { char: "お" },
 ];
+const charFunc = [{ char: "Delete" }, { char: "Enter" }];
 
-export default function Keypad({ usedChars, currentGuess,setCurrentGuess}) {
-
-  const buttonPress = ({char}) => {
-    if (char === 'Enter') {
-      // Only add guess if turn is less than 5
+export default function Keypad({ usedChars, currentGuess, setCurrentGuess }) {
+  const buttonPress = ({ char }) => {
+    if (char === "Enter") {
+      // 1. Turn must be less than 5
     }
 
-    if (char === 'Backspace') {
-      setCurrentGuess(prev => prev.slice(0, -1))
+    if (char === "Delete") {
+      setCurrentGuess((prev) => {
+        return prev.slice(0, -1);
+      });
       return;
     }
 
-   
-  }
+    if (currentGuess.length < 3) {
+      setCurrentGuess((prev) => {
+        console.log(prev + char);
+        return prev + char;
+      });
+    }
+  };
 
   return (
     <div>
@@ -118,7 +125,7 @@ export default function Keypad({ usedChars, currentGuess,setCurrentGuess}) {
                         className="bt"
                         type="button"
                         value={c.char}
-                        onClick={() => {buttonPress(c.char)}}
+                        onClick={() => buttonPress(c)}
                       />
                     )}
                   </td>
@@ -140,6 +147,7 @@ export default function Keypad({ usedChars, currentGuess,setCurrentGuess}) {
                         className="bt"
                         type="button"
                         value={c.char}
+                        onClick={() => buttonPress(c)}
                       />
                     )}
                   </td>
@@ -161,6 +169,7 @@ export default function Keypad({ usedChars, currentGuess,setCurrentGuess}) {
                         className="bt"
                         type="button"
                         value={c.char}
+                        onClick={() => buttonPress(c)}
                       />
                     )}
                   </td>
@@ -182,6 +191,7 @@ export default function Keypad({ usedChars, currentGuess,setCurrentGuess}) {
                         className="bt"
                         type="button"
                         value={c.char}
+                        onClick={() => buttonPress(c)}
                       />
                     )}
                   </td>
@@ -203,6 +213,7 @@ export default function Keypad({ usedChars, currentGuess,setCurrentGuess}) {
                         className="bt"
                         type="button"
                         value={c.char}
+                        onClick={() => buttonPress(c)}
                       />
                     )}
                   </td>
@@ -210,8 +221,24 @@ export default function Keypad({ usedChars, currentGuess,setCurrentGuess}) {
               })}
           </tr>
           <tr>
-            <td><input key="Backspace" className="bt" type="button" value={"Backspace"}/></td>
-            <td><input key="Enter" className="bt" type="button" value={"Enter"}/></td>
+            {charFunc &&
+              charFunc.map((c) => {
+                return (
+                  <td>
+                    {c.char === " " ? (
+                      <></>
+                    ) : (
+                      <input
+                        key={c.char}
+                        className="bt"
+                        type="button"
+                        value={c.char}
+                        onClick={() => buttonPress(c)}
+                      />
+                    )}
+                  </td>
+                );
+              })}
           </tr>
         </tbody>
       </table>
