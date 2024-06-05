@@ -6,19 +6,46 @@ const useWordle = (solution) => {
   const [history, setHistory] = useState([]); // Plain-string guesses
   const [isCorrect, setIsCorrect] = useState(false); // Victory
 
-  const formatGuess = () => {};
+  const formatGuess = () => {
+    let solutionArray = [...solution];
+    let formattedGuess = [...currentGuess].map((l) => {
+      return {key: l, color: 'grey'};
+    })
 
-  const addNewGuess = () => {};
+    return formattedGuess;
+  };
+
+  const addNewGuess = (formattedGuess) => {
+    if (currentGuess === solution) {
+      setIsCorrect(true);
+
+      setGuesses(prevGuess => {
+        let addNewGuess = [...prevGuess]
+      })
+    }
+  };
 
   const handleKeyup = ({ key }) => {
     if (key === "Enter") {
       // Only add guess if turn is less than 5
-      if (turn < 5) {
+      if (turn > 5) {
+        console.log("You've used all your guesses")
+        return;
       }
 
       // Do not allow duplicates
       if (history.includes(currentGuess)) {
+        console.log("You already guessed that word");
+          return;
       }
+
+      // Word must be 3 characters long
+      if (currentGuess.length !== 3) {
+        console.log("Word must be 3 characters");
+        return;
+      }
+      const formatted = formatGuess();
+      addNewGuess(formatted);
     }
 
     if (key === "Backspace") {

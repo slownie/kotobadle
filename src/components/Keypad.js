@@ -90,6 +90,7 @@ export default function Keypad({ usedChars, currentGuess, setCurrentGuess }) {
   const buttonPress = ({ char }) => {
     if (char === "Enter") {
       // 1. Turn must be less than 5
+      return;
     }
 
     if (char === "Delete") {
