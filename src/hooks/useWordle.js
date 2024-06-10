@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 const useWordle = (solution) => {
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState(""); // What the user is currently typing
@@ -20,14 +21,18 @@ const useWordle = (solution) => {
       setIsCorrect(true);
 
       setGuesses(prevGuess => {
-        let addNewGuess = [...prevGuess]
+        let newGuesses = [...prevGuess]
+        newGuesses[turn] = formattedGuess
+        return newGuesses;
       })
+      console.log("Now")
+      setCurrentGuess('');
     }
   };
 
-  const handleKeyup = ({ key }) => {
-    if (key === "Enter") {
-      // Only add guess if turn is less than 5
+  const buttonPress = ({ char }) => {
+    if (char === "Enter") {
+      // 1. Turn must be less than 5
       if (turn > 5) {
         console.log("You've used all your guesses")
         return;
@@ -44,28 +49,26 @@ const useWordle = (solution) => {
         console.log("Word must be 3 characters");
         return;
       }
+
       const formatted = formatGuess();
       addNewGuess(formatted);
     }
 
-    if (key === "Backspace") {
+    if (char === "Delete") {
       setCurrentGuess((prev) => {
         return prev.slice(0, -1);
       });
       return;
     }
 
-    // I don't know if this works with Japanese keyboards but it should??
-    if (/^[A-Za-z]$/.test(key) || /^[あ-ん]$/.test(key)) {
-      console.log(key);
-      if (currentGuess.length < 3) {
-        setCurrentGuess((prev) => {
-          return prev + key;
-        });
-      }
+    if (currentGuess.length < 3) {
+      setCurrentGuess((prev) => {
+        console.log(prev + char);
+        return prev + char;
+      });
     }
   };
 
-  return { turn, currentGuess, setCurrentGuess, guesses, isCorrect, handleKeyup };
+  return { turn, currentGuess, setCurrentGuess, guesses, isCorrect, buttonPress };
 };
 export default useWordle;

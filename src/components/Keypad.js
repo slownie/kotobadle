@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import useWordle from "../hooks/useWordle";
+
 const charJP_A = [
   { char: "ぱ" },
   { char: "ば" },
@@ -86,27 +88,31 @@ const charJP_O = [
 ];
 const charFunc = [{ char: "Delete" }, { char: "Enter" }];
 
-export default function Keypad({ usedChars, currentGuess, setCurrentGuess }) {
-  const buttonPress = ({ char }) => {
-    if (char === "Enter") {
-      // 1. Turn must be less than 5
-      return;
-    }
+export default function Keypad({ solution }) {
+  const {currentGuess, setCurrentGuess, buttonPress} = useWordle(solution)
 
-    if (char === "Delete") {
-      setCurrentGuess((prev) => {
-        return prev.slice(0, -1);
-      });
-      return;
-    }
+  // const buttonPress = ({ char }) => {
+  //   if (char === "Enter") {
+  //     // 1. Turn must be less than 5
+  //     console.log("Game sux")
+      
+  //     return;
+  //   }
 
-    if (currentGuess.length < 3) {
-      setCurrentGuess((prev) => {
-        console.log(prev + char);
-        return prev + char;
-      });
-    }
-  };
+  //   if (char === "Delete") {
+  //     setCurrentGuess((prev) => {
+  //       return prev.slice(0, -1);
+  //     });
+  //     return;
+  //   }
+
+  //   if (currentGuess.length < 3) {
+  //     setCurrentGuess((prev) => {
+  //       console.log(prev + char);
+  //       return prev + char;
+  //     });
+  //   }
+  // };
 
   return (
     <div>
