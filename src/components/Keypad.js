@@ -88,32 +88,7 @@ const charJP_O = [
 ];
 const charFunc = [{ char: "Delete" }, { char: "Enter" }];
 
-export default function Keypad({ solution }) {
-  const {currentGuess, setCurrentGuess, buttonPress} = useWordle(solution)
-
-  // const buttonPress = ({ char }) => {
-  //   if (char === "Enter") {
-  //     // 1. Turn must be less than 5
-  //     console.log("Game sux")
-      
-  //     return;
-  //   }
-
-  //   if (char === "Delete") {
-  //     setCurrentGuess((prev) => {
-  //       return prev.slice(0, -1);
-  //     });
-  //     return;
-  //   }
-
-  //   if (currentGuess.length < 3) {
-  //     setCurrentGuess((prev) => {
-  //       console.log(prev + char);
-  //       return prev + char;
-  //     });
-  //   }
-  // };
-
+export default function Keypad({ buttonPress, usedKeys }) {
   return (
     <div>
       <table className="keypad">

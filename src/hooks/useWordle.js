@@ -10,38 +10,48 @@ const useWordle = (solution) => {
   const formatGuess = () => {
     let solutionArray = [...solution];
     let formattedGuess = [...currentGuess].map((l) => {
-      return {key: l, color: 'grey'};
-    })
+      return { key: l, color: "grey" };
+    });
 
     return formattedGuess;
   };
 
   const addNewGuess = (formattedGuess) => {
+    // Is this the correct answer?
     if (currentGuess === solution) {
       setIsCorrect(true);
-
-      setGuesses(prevGuess => {
-        let newGuesses = [...prevGuess]
-        newGuesses[turn] = formattedGuess
-        return newGuesses;
-      })
-      console.log("Now")
-      setCurrentGuess('');
     }
+
+    // It wasn't so add it to the list
+    setGuesses((prevGuesses) => {
+      let newGuesses = [...prevGuesses];
+      newGuesses[turn] = formattedGuess;
+      return newGuesses;
+    });
+
+    setHistory((prevHistory) => {
+      return [...prevHistory, currentGuess];
+    });
+
+    setTurn((prevTurn) => {
+      return prevTurn + 1;
+    });
+    setCurrentGuess("");
   };
 
   const buttonPress = ({ char }) => {
     if (char === "Enter") {
+      console.log("Pressed");
       // 1. Turn must be less than 5
       if (turn > 5) {
-        console.log("You've used all your guesses")
+        console.log("You've used all your guesses");
         return;
       }
 
       // Do not allow duplicates
       if (history.includes(currentGuess)) {
         console.log("You already guessed that word");
-          return;
+        return;
       }
 
       // Word must be 3 characters long
@@ -51,6 +61,7 @@ const useWordle = (solution) => {
       }
 
       const formatted = formatGuess();
+      console.log(formatted);
       addNewGuess(formatted);
     }
 
@@ -63,12 +74,19 @@ const useWordle = (solution) => {
 
     if (currentGuess.length < 3) {
       setCurrentGuess((prev) => {
-        console.log(prev + char);
+        console.log("ButtonPress:" + prev + char);
         return prev + char;
       });
     }
   };
 
-  return { turn, currentGuess, setCurrentGuess, guesses, isCorrect, buttonPress };
+  return {
+    turn,
+    currentGuess,
+    setCurrentGuess,
+    guesses,
+    isCorrect,
+    buttonPress,
+  };
 };
 export default useWordle;
