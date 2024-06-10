@@ -20,6 +20,7 @@ const useWordle = (solution) => {
     // Is this the correct answer?
     if (currentGuess === solution) {
       setIsCorrect(true);
+      console.log("Correct");
     }
 
     // It wasn't so add it to the list

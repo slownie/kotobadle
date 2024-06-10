@@ -8,7 +8,7 @@ function App() {
   const answer = words[randomIndex];
   const [inputValue, setInputValue] = useState("");
 
-  const {language} = useContext(LanguageContext);
+  const { language } = useContext(LanguageContext);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
