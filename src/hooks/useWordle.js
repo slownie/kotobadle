@@ -6,11 +6,28 @@ const useWordle = (solution) => {
   const [guesses, setGuesses] = useState([...Array(6)]); // Formatted guesses
   const [history, setHistory] = useState([]); // Plain-string guesses
   const [isCorrect, setIsCorrect] = useState(false); // Victory
+  const [usedKeys, setUsedKeys] = useState({});
 
   const formatGuess = () => {
     let solutionArray = [...solution];
     let formattedGuess = [...currentGuess].map((l) => {
       return { key: l, color: "grey" };
+    });
+
+    // Correct chracter/placement
+    formattedGuess.forEach((l, i) => {
+      if (solution[i] === l.key) {
+        formattedGuess[i].color = "green";
+        solutionArray[i] = null;
+      }
+    });
+
+    // Correct character, wrong placement
+    formattedGuess.forEach((l, i) => {
+      if (solution.includes(l.key) && l.color !== "green") {
+        formattedGuess[i].color = "yellow";
+        solutionArray[solutionArray.indexOf(l.key)] = null;
+      }
     });
 
     return formattedGuess;
@@ -20,7 +37,6 @@ const useWordle = (solution) => {
     // Is this the correct answer?
     if (currentGuess === solution) {
       setIsCorrect(true);
-      console.log("Correct");
     }
 
     // It wasn't so add it to the list
@@ -37,6 +53,28 @@ const useWordle = (solution) => {
     setTurn((prevTurn) => {
       return prevTurn + 1;
     });
+
+    setUsedKeys((prevUsedKeys) => {
+      formattedGuess.forEach((l) => {
+        const currentColor = prevUsedKeys[l.key];
+
+        if (l.color === "green") {
+          prevUsedKeys[l.key] = "green";
+          return;
+        }
+        if (l.color === "yellow" && currentColor !== "green") {
+          prevUsedKeys[l.key] = "yellow";
+          return;
+        }
+        if (l.color === "grey" && currentColor !== ("green" || "yellow")) {
+          prevUsedKeys[l.key] = "grey";
+          return;
+        }
+      });
+      console.log(prevUsedKeys);
+      return prevUsedKeys;
+    });
+
     setCurrentGuess("");
   };
 
@@ -45,8 +83,7 @@ const useWordle = (solution) => {
       console.log("Pressed");
       // 1. Turn must be less than 5
       if (turn > 5) {
-        console.log("You've used all your guesses");
-        return;
+        return "You've used all your guesses.";
       }
 
       // Do not allow duplicates
@@ -57,12 +94,10 @@ const useWordle = (solution) => {
 
       // Word must be 3 characters long
       if (currentGuess.length !== 3) {
-        console.log("Word must be 3 characters");
-        return;
+        return "Word must be 3 characters";
       }
 
       const formatted = formatGuess();
-      console.log(formatted);
       addNewGuess(formatted);
     }
 
@@ -75,7 +110,6 @@ const useWordle = (solution) => {
 
     if (currentGuess.length < 3) {
       setCurrentGuess((prev) => {
-        console.log("ButtonPress:" + prev + char);
         return prev + char;
       });
     }
@@ -88,6 +122,7 @@ const useWordle = (solution) => {
     guesses,
     isCorrect,
     buttonPress,
+    usedKeys,
   };
 };
 export default useWordle;

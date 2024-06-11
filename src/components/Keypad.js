@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import useWordle from "../hooks/useWordle";
+import React from "react";
 
 const charJP_A = [
   { char: "ぱ" },
@@ -86,7 +85,23 @@ const charJP_O = [
   { char: "こ" },
   { char: "お" },
 ];
-const charFunc = [{ char: "Delete" }, { char: "Enter" }];
+const charFunc = [
+  { char: "Delete" },
+  { char: "Enter" },
+  { char: " " },
+  { char: " " },
+  { char: " " },
+  { char: " " },
+  { char: " " },
+  { char: " " },
+  { char: " " },
+  { char: " " },
+  { char: "ー" },
+  { char: "っ" },
+  { char: "ょ" },
+  { char: "ゅ" },
+  { char: "ゃ" },
+];
 
 export default function Keypad({ buttonPress, usedKeys }) {
   return (
@@ -97,6 +112,7 @@ export default function Keypad({ buttonPress, usedKeys }) {
           <tr>
             {charJP_A &&
               charJP_A.map((c) => {
+                const color = usedKeys[c.key];
                 return (
                   <td>
                     {c.char === " " ? (

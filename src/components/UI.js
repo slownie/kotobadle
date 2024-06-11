@@ -4,22 +4,15 @@ import useWordle from "../hooks/useWordle";
 import Grid from "./Grid";
 import Keypad from "./Keypad";
 import Modal from "./Modal";
+import TextInput from "./TextInput";
 
 export default function UI({ solution }) {
-  const {
-    currentGuess,
-    handleKeyup,
-    guesses,
-    turn,
-    usedKeys,
-    buttonPress,
-    isCorrect,
-  } = useWordle(solution);
+  const { currentGuess, guesses, turn, usedKeys, buttonPress, isCorrect } =
+    useWordle(solution);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (isCorrect) {
-      console.log("Ran");
       setTimeout(() => setShowModal(true), 1000);
     }
 
@@ -37,6 +30,7 @@ export default function UI({ solution }) {
       {showModal && (
         <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
       )}
+      <TextInput />
     </div>
   );
 }
