@@ -1,3 +1,27 @@
+/* Theme Colours */
+.light {
+}
+
+.light h1 {
+  font-size: 1.2em;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  margin: 0 0 30px 0;
+  color: #333;
+}
+
+.dark {
+  background-color: #333;
+}
+
+.dark {
+  font-size: 1.2em;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  margin: 0 0 30px 0;
+  color: #eee;
+}
+
 body {
   text-align: center;
   font-size: 1em;
@@ -5,65 +29,12 @@ body {
   margin: 0;
 }
 
-.keypad {
-  max-width: 500px;
-  margin: 20px auto;
-}
-
-.bt {
-  font-size: 1.25em;
-  font-weight: bold;
-  border: 0;
-  padding: 0;
-  margin: 0 6px 0 0;
-  height: 48px;
-  width: 36px;
-  border-radius: 4px;
-}
-
-.row > bt.green {
-  --background: #5ac85a;
-  --border-color: #5ac85a;
-  animation: flip 0.5s ease forwards;
-}
-
-.row > bt.grey {
-  --background: #a1a1a1;
-  --border-color: #a1a1a1;
-  animation: flip 0.6s ease forwards;
-}
-
-.row > bt.yellow {
-  --background: #e2cc68;
-  --border-color: #e2cc68;
-  animation: flip 0.5s ease forwards;
-}
-
-.bt-long {
-  font-size: 1.25em;
-  font-weight: bold;
-  border: 0;
-  padding: 0;
-  margin: 0 6px 0 0;
-  height: 48px;
-  width: 56px;
-  border-radius: 4px;
-}
-
-h1 {
-  font-size: 1.2em;
-  padding: 20px 0;
-  border-bottom: 1px solid #eee;
-  margin: 0 0 30px 0;
-  color: #333;
-}
-/* rows */
+/* Rows */
 .row {
   text-align: center;
   display: flex;
   justify-content: center;
 }
-
 .row > div {
   display: block;
   width: 60px;
@@ -76,25 +47,21 @@ h1 {
   font-weight: bold;
   font-size: 2.5em;
 }
-
 .row > div.green {
   --background: #5ac85a;
   --border-color: #5ac85a;
   animation: flip 0.5s ease forwards;
 }
-
 .row > div.grey {
   --background: #a1a1a1;
   --border-color: #a1a1a1;
   animation: flip 0.6s ease forwards;
 }
-
 .row > div.yellow {
   --background: #e2cc68;
   --border-color: #e2cc68;
   animation: flip 0.5s ease forwards;
 }
-
 .row > div:nth-child(2) {
   animation-delay: 0.2s;
 }
@@ -111,6 +78,40 @@ h1 {
   animation: bounce 0.2s ease-in-out forwards;
 }
 
+/* Keypad */
+.keypad {
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.keypad > div {
+  font-size: 1.25em;
+  font-weight: bold;
+  border: 0;
+  padding: 0;
+  margin: 0 6px 0 0;
+  height: 32px;
+  width: 36px;
+  border-radius: 4px;
+  background-color: #d3d6da;
+}
+
+.keypad > div.green {
+  background: #5ac85a;
+  color: #fff;
+  transition: all 0.3s ease-in;
+}
+.keypad > div.yellow {
+  background: #e2cc68;
+  color: #fff;
+  transition: all 0.3s ease-in;
+}
+.keypad > div.grey {
+  background: #a1a1a1;
+  color: #fff;
+  transition: all 0.3s ease-in;
+}
+
 .keys {
   margin: 5px;
   width: 40px;
@@ -119,21 +120,6 @@ h1 {
   display: inline-block;
   border-radius: 6px;
   line-height: 50px;
-}
-.btn > div.green {
-  background: #5ac85a;
-  color: #fff;
-  transition: all 0.3s ease-in;
-}
-.btn > div.yellow {
-  background: #e2cc68;
-  color: #fff;
-  transition: all 0.3s ease-in;
-}
-.btn > div.grey {
-  background: #a1a1a1;
-  color: #fff;
-  transition: all 0.3s ease-in;
 }
 
 .modal {

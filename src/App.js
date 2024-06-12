@@ -1,5 +1,6 @@
 import UI from "./components/UI";
 import { LanguageContext } from "./store/languageContext";
+import { ThemeContext } from "./store/themeContext";
 import words from "./words.json";
 import { useContext } from "react";
 
@@ -8,13 +9,11 @@ function App() {
   const answer = words[randomIndex];
 
   const { language } = useContext(LanguageContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="App">
-      <div className="Navbar">
-        <h1>言葉dle (Kotobadle)</h1>
-      </div>
-
+    <div className={theme ? "light" : "dark"}>
+      <h1>言葉dle (Kotobadle)</h1>
       {answer && <UI solution={answer} />}
     </div>
   );

@@ -86,8 +86,8 @@ const charJP_O = [
   { char: "お" },
 ];
 const charFunc = [
-  { char: "Delete" },
-  { char: "Enter" },
+  { char: "⌫" },
+  { char: "➤" },
   { char: " " },
   { char: " " },
   { char: " " },
@@ -112,19 +112,19 @@ export default function Keypad({ buttonPress, usedKeys }) {
           <tr>
             {charJP_A &&
               charJP_A.map((c) => {
-                const color = usedKeys[c.key];
+                const color = usedKeys[c.char];
                 return (
-                  <td>
+                  <td className="keypad">
                     {c.char === " " ? (
                       <></>
                     ) : (
-                      <input
+                      <div
                         key={c.char}
-                        className="bt"
-                        type="button"
-                        value={c.char}
+                        className={color}
                         onClick={() => buttonPress(c)}
-                      />
+                      >
+                        {c.char}
+                      </div>
                     )}
                   </td>
                 );
@@ -135,18 +135,19 @@ export default function Keypad({ buttonPress, usedKeys }) {
           <tr>
             {charJP_I &&
               charJP_I.map((c) => {
+                const color = usedKeys[c.char];
                 return (
-                  <td>
+                  <td className="keypad">
                     {c.char === " " ? (
                       <></>
                     ) : (
-                      <input
+                      <div
                         key={c.char}
-                        className="bt"
-                        type="button"
-                        value={c.char}
+                        className={color}
                         onClick={() => buttonPress(c)}
-                      />
+                      >
+                        {c.char}
+                      </div>
                     )}
                   </td>
                 );
@@ -157,18 +158,19 @@ export default function Keypad({ buttonPress, usedKeys }) {
           <tr>
             {charJP_U &&
               charJP_U.map((c) => {
+                const color = usedKeys[c.char];
                 return (
-                  <td>
+                  <td className="keypad">
                     {c.char === " " ? (
                       <></>
                     ) : (
-                      <input
+                      <div
                         key={c.char}
-                        className="bt"
-                        type="button"
-                        value={c.char}
+                        className={color}
                         onClick={() => buttonPress(c)}
-                      />
+                      >
+                        {c.char}
+                      </div>
                     )}
                   </td>
                 );
@@ -179,18 +181,19 @@ export default function Keypad({ buttonPress, usedKeys }) {
           <tr>
             {charJP_E &&
               charJP_E.map((c) => {
+                const color = usedKeys[c.char];
                 return (
-                  <td>
+                  <td className="keypad">
                     {c.char === " " ? (
                       <></>
                     ) : (
-                      <input
+                      <div
                         key={c.char}
-                        className="bt"
-                        type="button"
-                        value={c.char}
+                        className={color}
                         onClick={() => buttonPress(c)}
-                      />
+                      >
+                        {c.char}
+                      </div>
                     )}
                   </td>
                 );
@@ -201,18 +204,19 @@ export default function Keypad({ buttonPress, usedKeys }) {
           <tr>
             {charJP_O &&
               charJP_O.map((c) => {
+                const color = usedKeys[c.char];
                 return (
-                  <td>
+                  <td className="keypad">
                     {c.char === " " ? (
                       <></>
                     ) : (
-                      <input
+                      <div
                         key={c.char}
-                        className="bt"
-                        type="button"
-                        value={c.char}
+                        className={color}
                         onClick={() => buttonPress(c)}
-                      />
+                      >
+                        {c.char}
+                      </div>
                     )}
                   </td>
                 );
@@ -221,18 +225,19 @@ export default function Keypad({ buttonPress, usedKeys }) {
           <tr>
             {charFunc &&
               charFunc.map((c) => {
+                const color = usedKeys[c.char];
                 return (
-                  <td>
+                  <td className="keypad">
                     {c.char === " " ? (
                       <></>
                     ) : (
-                      <input
+                      <div
                         key={c.char}
-                        className="bt"
-                        type="button"
-                        value={c.char}
+                        className={color}
                         onClick={() => buttonPress(c)}
-                      />
+                      >
+                        {c.char}
+                      </div>
                     )}
                   </td>
                 );

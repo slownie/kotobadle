@@ -79,7 +79,7 @@ const useWordle = (solution) => {
   };
 
   const buttonPress = ({ char }) => {
-    if (char === "Enter") {
+    if (char === "Enter" || char === "➤") {
       console.log("Pressed");
       // 1. Turn must be less than 5
       if (turn > 5) {
@@ -101,7 +101,7 @@ const useWordle = (solution) => {
       addNewGuess(formatted);
     }
 
-    if (char === "Delete") {
+    if (char === "Delete" || char === "⌫") {
       setCurrentGuess((prev) => {
         return prev.slice(0, -1);
       });
