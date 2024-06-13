@@ -71,7 +71,6 @@ const useWordle = (solution) => {
           return;
         }
       });
-      console.log(prevUsedKeys);
       return prevUsedKeys;
     });
 

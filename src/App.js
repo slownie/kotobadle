@@ -1,4 +1,4 @@
-import UI from "./components/UI";
+import Game from "./components/Game";
 import { LanguageContext } from "./store/languageContext";
 import { ThemeContext } from "./store/themeContext";
 import words from "./words.json";
@@ -14,7 +14,7 @@ function App() {
   return (
     <div className={theme ? "light" : "dark"}>
       <h1>言葉dle (Kotobadle)</h1>
-      {answer && <UI solution={answer} />}
+      {answer && <Game solution={answer} />}
     </div>
   );
 }
