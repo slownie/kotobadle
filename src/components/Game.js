@@ -4,22 +4,34 @@ import useWordle from "../hooks/useWordle";
 import Grid from "./Grid";
 import Keypad from "./Keypad";
 import Modal from "./Modal";
-import TextInput from "./TextInput";
 
 export default function Game({ solution }) {
-  const { currentGuess, guesses, turn, usedKeys, buttonPress, isCorrect } =
-    useWordle(solution[0]);
+  const {
+    currentGuess,
+    guesses,
+    turn,
+    usedKeys,
+    buttonPress,
+    isCorrect,
+    handleKeyUp,
+  } = useWordle(solution[0]);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    window.addEventListener("keyup", handleKeyUp);
+
     if (isCorrect) {
       setTimeout(() => setShowModal(true), 2000);
+      window.removeEventListener("keyup", handleKeyUp);
     }
 
     if (turn > 5) {
       setTimeout(() => setShowModal(true), 2000);
+      window.removeEventListener("keyup", handleKeyUp);
     }
-  }, [isCorrect, turn]);
+
+    return () => window.removeEventListener("keyup", handleKeyUp);
+  }, [handleKeyUp, isCorrect, turn]);
 
   return (
     <div>
@@ -30,7 +42,6 @@ export default function Game({ solution }) {
       {showModal && (
         <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
       )}
-      <TextInput />
     </div>
   );
 }

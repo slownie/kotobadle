@@ -79,7 +79,6 @@ const useWordle = (solution) => {
 
   const buttonPress = ({ char }) => {
     if (char === "Enter" || char === "➤") {
-      console.log("Pressed");
       // 1. Turn must be less than 5
       if (turn > 5) {
         return "You've used all your guesses.";
@@ -114,6 +113,42 @@ const useWordle = (solution) => {
     }
   };
 
+  const handleKeyUp = ({ key }) => {
+    if (key === "Enter") {
+      // 1. Turn must be less than 5
+      if (turn > 5) {
+        return "You've used all your guesses.";
+      }
+
+      // Do not allow duplicates
+      if (history.includes(currentGuess)) {
+        console.log("You already guessed that word");
+        return;
+      }
+
+      // Word must be 3 characters long
+      if (currentGuess.length !== 3) {
+        return "Word must be 3 characters";
+      }
+
+      const formatted = formatGuess();
+      addNewGuess(formatted);
+    }
+
+    if (key === "Delete" || key === "Backspace") {
+      setCurrentGuess((prev) => {
+        return prev.slice(0, -1);
+      });
+      return;
+    }
+
+    if (/^[A-Za-zぁ-ん]$/.test(key)) {
+      if (currentGuess.length < 3) {
+        setCurrentGuess((prev) => prev + key);
+      }
+    }
+  };
+
   return {
     turn,
     currentGuess,
@@ -122,6 +157,7 @@ const useWordle = (solution) => {
     isCorrect,
     buttonPress,
     usedKeys,
+    handleKeyUp,
   };
 };
 export default useWordle;

@@ -12,8 +12,11 @@ function App() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={theme ? "light" : "dark"}>
-      <h1>言葉dle (Kotobadle)</h1>
+    <div className="light">
+      <div>
+        <h1>言葉dle (Kotobadle)</h1>
+      </div>
+
       {answer && <Game solution={answer} />}
     </div>
   );

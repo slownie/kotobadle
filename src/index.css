@@ -1,12 +1,22 @@
+body {
+  text-align: center;
+  font-size: 1em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.2em;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  margin: 0 0 30px 0;
+}
+
 /* Theme Colours */
 .light {
 }
 
 .light h1 {
-  font-size: 1.2em;
-  padding: 20px 0;
-  border-bottom: 1px solid #eee;
-  margin: 0 0 30px 0;
   color: #333;
 }
 
@@ -20,13 +30,6 @@
   border-bottom: 1px solid #eee;
   margin: 0 0 30px 0;
   color: #eee;
-}
-
-body {
-  text-align: center;
-  font-size: 1em;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin: 0;
 }
 
 /* Rows */
