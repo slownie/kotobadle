@@ -40,7 +40,7 @@ const charJP_U = [
   { char: "づ" },
   { char: "ず" },
   { char: "ぐ" },
-  { char: "を" },
+  { char: " " },
   { char: "る" },
   { char: "ゆ" },
   { char: "む" },
@@ -74,7 +74,7 @@ const charJP_O = [
   { char: "ど" },
   { char: "ぞ" },
   { char: "ご" },
-  { char: "ん" },
+  { char: "を" },
   { char: "ろ" },
   { char: "よ" },
   { char: "も" },
@@ -95,12 +95,12 @@ const charFunc = [
   { char: " " },
   { char: " " },
   { char: " " },
-  { char: " " },
   { char: "ー" },
   { char: "っ" },
   { char: "ょ" },
   { char: "ゅ" },
   { char: "ゃ" },
+  { char: "ん" },
 ];
 
 export default function Keypad({ buttonPress, usedKeys }) {

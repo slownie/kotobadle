@@ -16,5 +16,23 @@ k
 -> o -> きょ
 
 n
+-> n -> ん
+
+Consonants:
+
+- k
+- s
+- t
+- n
+- h
+- m
+- y
+- r
+- w
+- g
+- z
+- d
+- b
+- p
 
 formatGuess if check, all chars must be in hiragana
